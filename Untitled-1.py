@@ -1,7 +1,7 @@
 """
 projekt_1.py: první projekt do Engeto Online Python Akademie
 
-author: Lubomír Vaňura
+author: Lubomir Vanura
 email: Lubomir.2@seznam.cz
 """
 # nadefinování oddělovače
@@ -89,18 +89,19 @@ else:
     # Kontrola platnosti
     if hodnota_min <= int(vyber_hodnoty) <= hodnota_max:
         vyberove_cislo = int(vyber_hodnoty)
-        slovicka = TEXTS[vyberove_cislo - 1].split()
+        words = TEXTS[vyberove_cislo - 1].split()
         
         # Počítání slov
-        number_of_words = len(slovicka)
-        number_of_tc_words = len([word for word in slovicka if word.istitle()])
-        number_of_uc_words = len([word for word in slovicka if word.strip(".,!?;:").isupper() and word.isalpha()])
-        number_of_lc_words = len([word for word in slovicka if word.strip(".,!?;:").islower()])
-        number_of_num_strings = len([word for word in slovicka if word.isdigit()])
-        sum_of_numbers = sum([int(num) for num in slovicka if num.isdigit()])
+        number_of_words = len(words)
+        number_of_tc_words = len([word for word in words if word.istitle()])
+        number_of_uc_words = len([word for word in words if word.strip(".,!?;:").isupper() and word.isalpha()])
+        number_of_lc_words = len([word for word in words if word.strip(".,!?;:").islower()])
+        number_of_num_strings = len([word for word in words if word.isdigit()])
+        sum_of_numbers = sum([int(num) for num in words if num.isdigit()])
         
         # Výstupní informace
         print(oddelovac)
+        print(f"You have selected the text number: {vyberove_cislo}")
         print(f"There are {number_of_words} words in the selected text.")
         print(f"There are {number_of_tc_words} titlecase words.")
         print(f"There are {number_of_uc_words} uppercase words.")
@@ -111,6 +112,40 @@ else:
     else:
         print("incorrect number")
         exit()
+        
+TEXTS = [
+    '''
+    Situated about 10 miles west of Kemmerer,
+    Fossil Butte is a ruggedly impressive
+    topographic feature that rises sharply
+    some 1000 feet above Twin Creek Valley
+    to an elevation of more than 7500 feet
+    above sea level. The butte is located just
+    north of US 30N and the Union Pacific Railroad,
+    which traverse the valley. 
+    ''',
+    '''
+    At the base of Fossil Butte are the bright
+    red, purple, yellow and gray beds of the Wasatch
+    Formation. Eroded portions of these horizontal
+    beds slope gradually upward from the valley floor
+    and steepen abruptly. Overlying them and extending
+    to the top of the butte are the much steeper
+    buff-to-white beds of the Green River Formation,
+    which are about 300 feet thick.
+    ''',
+    '''
+    The monument contains 8198 acres and protects
+    a portion of the largest deposit of freshwater fish
+    fossils in the world. The richest fossil fish deposits
+    are found in multiple limestone layers, which lie some
+    100 feet below the top of the butte. The fossils
+    represent several varieties of perch, as well as
+    other freshwater genera and herring similar to those
+    in modern oceans. Other fish such as paddlefish,
+    garpike and stingray are also present.
+    '''
+]
 
 # Seznam pro uchování počtu výskytů délky slov
 pocitana_delka = {}
