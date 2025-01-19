@@ -4,6 +4,7 @@ projekt_1.py: první projekt do Engeto Online Python Akademie
 author: Lubomír Vaňura
 email: Lubomir.2@seznam.cz
 """
+
 TEXTS = ['''
 Situated about 10 miles west of Kemmerer,
 Fossil Butte is a ruggedly impressive
@@ -32,8 +33,6 @@ in modern oceans. Other fish such as paddlefish,
 garpike and stingray are also present.'''
 ]
 
-splitter = ("-" * 60)
-
 users = {
     "bob": "123",
     "ann": "pass123",
@@ -41,80 +40,53 @@ users = {
     "liz": "pass123",
 }
 
-name = input("username: ")
-password = input("password: ")
-
-value_min = 1
-value_max = len(TEXTS)
-
-if users.get(name) and users[name] == password:
-    print(splitter)   
-    print("Welcome to the app,", name)
-    print("\n", "We have", value_max, "texts to be analyzed.")
-    print(splitter)
-    value_level = input (
-    f"Enter a number btw. {value_min} and {value_max} to select: 1:  "
-    )
-    users.get(name) and users[name] == password
-    pass
-    print(splitter)
-else: 
-    name not in users
-    print("unregistered user, terminating the program..")
-    exit()
-#______________________________________________________________
-   
-    if value_min <= int(range) <= value_max:
-        selected_text = int(range)  # Vybere text na základě hodnoty range
-        wordy = TEXTS[selected_text - 1].split()  # Rozdělí text na slova
-        total_number_of_words = len(wordy)  # Spočítá počet slov
-        print(f"Vybraný text: {TEXTS[selected_text - 1]}")
-    else: 
-        value_level not in selected_text
-    print("Value is outside of the range.")
-        
-#_______________________________________________________________       
-    number_of_words = len(wordy)
-    number_of_tc_words = len([word for word in wordy if word.istitle()])
-    number_of_uc_words = len([word for word in wordy if word.strip(".,!?;:").isupper() and word.isalpha()])
-    number_of_lc_words = len([word for word in wordy if word.strip(".,!?;:").islower()])
-    number_of_num_strings = len([word for word in wordy if word.isdigit()])
-    sum_of_numbers = sum([int(num) for num in wordy if num.isdigit()])
-           
-    print(splitter)
-    print(f"There are {number_of_words} words in the selected text.")
-    print(f"There are {number_of_tc_words} titlecase words.")
-    print(f"There are {number_of_uc_words} uppercase words.")
-    print(f"There are {number_of_lc_words} lowercase words.")
-    print(f"There are {number_of_num_strings} numeric strings.")
-    print(f"The sum of all numbers is {sum_of_numbers}.")
-    print(splitter)
+def start():
+    username = input("username: ")
+    password = input("password: ")
     
+    splitter = ("-" * 30)
+    min_value = 1
+    max_value = len(TEXTS)
 
-# Seznam pro uchování počtu výskytů délky slov
-counting_lenght = {}
-
-for text in TEXTS:
-    word = text.split() 
-    
-    for word in text:
-       
-        word = ''.join(words for words in word if words.isalnum())
+    if users.get(username) == password:
+        print(splitter)
+        print("Welcome to the app,", username)
+        print("We have", max_value, "texts to be analyzed.")
+        print(splitter)
+        selected_number = int(input(f"Enter a number between {min_value} and {max_value} to select: "))
         
-        word_lenght = len(word)
-        
-        if word_lenght in counting_lenght:
-            counting_lenght[word_lenght] += 1
+        if min_value <= selected_number <= max_value:
+            analyze_text(TEXTS[selected_number - 1])
         else:
-            counting_lenght[word_lenght] = 1
+            print(f"Please select a number between {min_value} and {max_value}.")
+    else:
+        print("unregistered user, terminating the program...")
 
-sorted_lenght = sorted(counting_lenght.items())
- 
-print(f"{'LEN':<5}| {'OCCURENCES':<40}| {'NR.'}")
-print(splitter)
+def analyze_text(text):
+    # Počet slov v textu
+    words = text.split()
+    num_words = len(words)
+    titlecase_words = sum(1 for word in words if word.istitle())
+    uppercase_words = sum(1 for word in words if word.isupper())
+    lowercase_words = sum(1 for word in words if word.islower())
+    numeric_strings = [word for word in words if word.isdigit()]
+    num_numeric = len(numeric_strings)
 
-for lenght, count in sorted_lenght:
-    print(f"{lenght:<5}| {'*' * count:<40}| {count}")
+    sum_numbers = sum(int(num) for num in numeric_strings)
+    
+    print(f"There are {num_words} words in the selected text.")
+    print(f"There are {titlecase_words} titlecase words.")
+    print(f"There are {uppercase_words} uppercase words.")
+    print(f"There are {lowercase_words} lowercase words.")
+    print(f"There are {num_numeric} numeric strings.")
+    print(f"The sum of all the numbers {sum_numbers}")
 
-
+    print("\nLEN|  OCCURENCES  |NR.")
+    word_lengths = [len(word) for word in words]
+    for i in range(1, 12):
+        count = word_lengths.count(i)
+        if count > 0:
+            print(f"{i:<3}|{'*' * count:<12}|{count}")
+# Spuštění
+start()
 
