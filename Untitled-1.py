@@ -84,7 +84,6 @@ def analyze_text(text):
     print(f"There are {num_numeric} numeric strings.")
     print(f"The sum of all the numbers {sum_numbers}")
     print(splitter)
-
     print("\nLEN|  OCCURENCES  |NR.")
     print(splitter)
     word_lengths = [len(word) for word in words]
