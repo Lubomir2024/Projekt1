@@ -4,7 +4,7 @@ projekt_1.py: první projekt do Engeto Online Python Akademie
 author: Lubomír Vaňura
 email: Lubomir.2@seznam.cz
 """
-#vstupní parametry
+
 TEXTS = ['''
 Situated about 10 miles west of Kemmerer,
 Fossil Butte is a ruggedly impressive
@@ -32,15 +32,15 @@ other freshwater genera and herring similar to those
 in modern oceans. Other fish such as paddlefish,
 garpike and stingray are also present.'''
 ]
-#vstupní hodnoty uživatele
+
 users = {
     "bob": "123",
     "ann": "pass123",
     "mike": "password123",
     "liz": "pass123",
 }
-#definice start
-def start():
+
+def main():
     username = input("username: ")
     password = input("password: ")
     
@@ -53,25 +53,29 @@ def start():
         print("Welcome to the app,", username)
         print("We have", max_value, "texts to be analyzed.")
         print(splitter)
+
         selected_number = int(input(f"Enter a number between {min_value} and {max_value} to select: "))
-        
         if min_value <= selected_number <= max_value:
             analyze_text(TEXTS[selected_number - 1])
         else:
             print(f"Please select a number between {min_value} and {max_value}.")
     else:
         print("unregistered user, terminating the program...")
-# 2. definice textu
+        exit()
+    
 def analyze_text(text):
+    splitter = ("-" * 30)
     words = text.split()
     num_words = len(words)
     titlecase_words = sum(1 for word in words if word.istitle())
     uppercase_words = sum(1 for word in words if word.isupper())
     lowercase_words = sum(1 for word in words if word.islower())
     numeric_strings = [word for word in words if word.isdigit()]
+   
     num_numeric = len(numeric_strings)
-    
+   
     sum_numbers = sum(int(num) for num in numeric_strings)
+
     print(splitter)
     print(f"There are {num_words} words in the selected text.")
     print(f"There are {titlecase_words} titlecase words.")
@@ -81,8 +85,6 @@ def analyze_text(text):
     print(f"The sum of all the numbers {sum_numbers}")
     print(splitter)
 
-    splitter = ("-" * 30)
-    print(splitter)
     print("\nLEN|  OCCURENCES  |NR.")
     print(splitter)
     word_lengths = [len(word) for word in words]
@@ -90,6 +92,6 @@ def analyze_text(text):
         count = word_lengths.count(i)
         if count > 0:
             print(f"{i:<3}|{'*' * count:<12}|{count}")
-# Spuštění definice start
-start()
+
+main()
 
