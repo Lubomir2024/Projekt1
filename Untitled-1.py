@@ -74,7 +74,7 @@ def analyze_text(text):
    
     num_numeric = len(numeric_strings)
    
-    sum_numbers = sum(int(num) for num in numeric_strings)
+    sum_numbers = sum(int(num) for num in numeric_strings) = 0
 
     print(splitter)
     print(f"There are {num_words} words in the selected text.")
