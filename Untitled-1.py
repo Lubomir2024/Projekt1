@@ -4,7 +4,7 @@ projekt_1.py: první projekt do Engeto Online Python Akademie
 author: Lubomír Vaňura
 email: Lubomir.2@seznam.cz
 """
-
+#vstupní parametry
 TEXTS = ['''
 Situated about 10 miles west of Kemmerer,
 Fossil Butte is a ruggedly impressive
@@ -32,14 +32,14 @@ other freshwater genera and herring similar to those
 in modern oceans. Other fish such as paddlefish,
 garpike and stingray are also present.'''
 ]
-
+#vstupní hodnoty uživatele
 users = {
     "bob": "123",
     "ann": "pass123",
     "mike": "password123",
     "liz": "pass123",
 }
-
+#definice start
 def start():
     username = input("username: ")
     password = input("password: ")
@@ -61,9 +61,8 @@ def start():
             print(f"Please select a number between {min_value} and {max_value}.")
     else:
         print("unregistered user, terminating the program...")
-
+# 2. definice textu
 def analyze_text(text):
-    # Počet slov v textu
     words = text.split()
     num_words = len(words)
     titlecase_words = sum(1 for word in words if word.istitle())
@@ -71,22 +70,26 @@ def analyze_text(text):
     lowercase_words = sum(1 for word in words if word.islower())
     numeric_strings = [word for word in words if word.isdigit()]
     num_numeric = len(numeric_strings)
-
-    sum_numbers = sum(int(num) for num in numeric_strings)
     
+    sum_numbers = sum(int(num) for num in numeric_strings)
+    print(splitter)
     print(f"There are {num_words} words in the selected text.")
     print(f"There are {titlecase_words} titlecase words.")
     print(f"There are {uppercase_words} uppercase words.")
     print(f"There are {lowercase_words} lowercase words.")
     print(f"There are {num_numeric} numeric strings.")
     print(f"The sum of all the numbers {sum_numbers}")
+    print(splitter)
 
+    splitter = ("-" * 30)
+    print(splitter)
     print("\nLEN|  OCCURENCES  |NR.")
+    print(splitter)
     word_lengths = [len(word) for word in words]
     for i in range(1, 12):
         count = word_lengths.count(i)
         if count > 0:
             print(f"{i:<3}|{'*' * count:<12}|{count}")
-# Spuštění
+# Spuštění definice start
 start()
 
