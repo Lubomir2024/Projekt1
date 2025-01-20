@@ -90,7 +90,7 @@ def analyze_text(text):
     for i in range(1, 16):
         count = word_lengths.count(i)
         if count > 0:
-            print(f"{i:<3}|{'*' * count:<16}|{count}")
+            print(f"{i:>3}|{'*' * count:<16}|{count:<3}")
 
 main()
 
