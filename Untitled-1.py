@@ -87,10 +87,10 @@ def analyze_text(text):
     print("\nLEN|  OCCURENCES  |NR.")
     print(splitter)
     word_lengths = [len(word.strip(".,!?;:")) for word in words] 
-    for i in range(1, 12):
+    for i in range(1, 13):
         count = word_lengths.count(i)
         if count > 0:
-            print(f"{i:<3}|{'*' * count:<12}|{count}")
+            print(f"{i:<3}|{'*' * count:<16}|{count:<3}")
 
 main()
 
