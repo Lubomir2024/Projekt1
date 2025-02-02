@@ -32,15 +32,16 @@ def check_full(board):
 
 def get_move(player, board):
     while True:
-        try:
-            move = int(input(f"Player {player} | Please enter your move number: "))
+        move_str = input(f"Player {player} | Please enter your move number: ")
+        if move_str.isdigit():
+            move = int(move_str)
             if move < 1 or move > 9:
                 print("Invalid number! Please choose a number between 1 and 9.")
             elif board[move - 1] != ' ':
                 print("This position is already occupied! Please choose another.")
             else:
                 return move - 1
-        except ValueError:
+        else:
             print("Invalid input! Please enter a number between 1 and 9.")
 
 def main():
@@ -72,14 +73,14 @@ def main():
         # Kontrola jednoho z výherců
         if check_winner(board, current_player):
             print_board(board)
-            print(f"========================================")
+            print(splitter)
             print(f"Congratulations, the player {current_player} WON!")
             break
         
         # Kontrola remízy
         if check_full(board):
             print_board(board)
-            print(f"========================================")
+            print(splitter)
             print("It's a DRAW!")
             break
         
