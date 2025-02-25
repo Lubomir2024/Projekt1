@@ -5,4 +5,9 @@ author: Lubomír Vaňura
 email: Lubomir.2@seznam.cz
 """
 
-
+git init
+git add .
+git commit -m "Initial commit"
+git branch -M main
+git remote add origin https://github.com/Lubomir2024/main.py.git
+git push -u origin main
